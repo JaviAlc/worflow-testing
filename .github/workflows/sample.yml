@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0          
-          ref: develop
+          ref: main
           repository: JaviAlc/worflow-testing
       - name: Prepare committer information
         run: |
