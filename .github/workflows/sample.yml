@@ -13,6 +13,7 @@ env:
   WORKFLOW_VERSION: 1.0.0 
   SCM_EMAIL: javiAlc@github.com
   SCM_USERNAME: javiAlc
+  BRANCH_NAME: 
 
 jobs:
   update-definition:
