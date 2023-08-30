@@ -30,3 +30,12 @@ jobs:
         run: |
           git config user.name "${{env.SCM_USERNAME}}"
           git config user.email "${{ENV.SCM_EMAIL}}"
+      - name: Get actual branch for Pull Request
+        run: |
+          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        id: extract_branch
+      - name: Show actual branch name
+        run: |
+          echo "${{steps.extract_branch.outputs.BRANCH_NAME}}"
+        
