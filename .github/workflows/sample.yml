@@ -1,0 +1,32 @@
+---
+name: sample
+### Recibe una lista de ficheros con sus nombres y realiza una pull request con ellos sobre main
+on:
+  workflow_dispatch:
+    inputs:
+      NAME_BRANCH_CREATED:
+        description: 'Name branch to create'
+        required: true
+        default: ''
+
+env:
+  WORKFLOW_VERSION: 1.0.0 
+  SCM_EMAIL: javiAlc@github.com
+  SCM_USERNAME: javiAlc
+
+jobs:
+  update-definition:
+    name: Update publication definition
+    timeout-minutes: 5
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0          
+          ref: develop
+          repository: JaviAlc/worflow-testing
+      - name: Prepare committer information
+        run: |
+          git config user.name "${{env.SCM_USERNAME}}"
+          git config user.email "${{ENV.SCM_EMAIL}}"
