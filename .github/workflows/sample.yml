@@ -17,8 +17,8 @@ env:
   FOLDER_CREATED: false
 
 jobs:
-  update-definition:
-    name: Update publication definition
+  Sample:
+    name: Sample
     timeout-minutes: 5
     runs-on: ubuntu-20.04
     steps:
@@ -54,10 +54,10 @@ jobs:
             touch ${{ inputs.folder_path }}/test.txt
           else
             echo "Folder already exists"
-            touch ${{ inputs.folder_path }}/test2.txt
+            echo "test" > "${{ inputs.folder_path }}/$test2.txt"
           fi
           git add -A
-          git commit -S -m "Test creating folders"
+          git commit -m "Test creating folders"
           git push origin main
         
           
