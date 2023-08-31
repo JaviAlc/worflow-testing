@@ -54,7 +54,7 @@ jobs:
             touch ${{ inputs.folder_path }}/test.txt
           else
             echo "Folder already exists"
-            echo "test from actions" > "${{ inputs.folder_path }}/$test2.txt"
+            echo "test from actions" > "${{ inputs.folder_path }}/test2.txt"
           fi
       - name: Print folders
         run: |
