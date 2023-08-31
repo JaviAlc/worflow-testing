@@ -44,7 +44,8 @@ jobs:
         run: |
           if [ ! -d ${{ inputs.folder_path }} ]; then
             mkdir -p ${{ inputs.folder_path }}
-            echo "true=$FOLDER_CREATED" >> $GITHUB_ENV
+            echo "FOLDER_CREATED=true" >> $GITHUB_ENV
+            echo "Folder created"
           fi
       - name: Make changes and commit
         run: |
