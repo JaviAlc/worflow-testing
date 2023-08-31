@@ -4,8 +4,8 @@ name: sample
 on:
   workflow_dispatch:
     inputs:
-      NAME_BRANCH_CREATED:
-        description: 'Name branch to create'
+      folder_path:
+        description: 'Folder to create if not exists'
         required: true
         default: ''
 
@@ -35,8 +35,16 @@ jobs:
         run: |
           BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-          echo actual ${{env.BRANCH_NAME}}
+          echo actual: "${{env.BRANCH_NAME}}"
       - name: Show actual branch name
         run: |
           echo "${{env.BRANCH_NAME}}"
+      - name: Check if folder exists and create if not
+        run: |
+          if [ ! -d ${{ inputs.folder_path }} ]; then
+            mkdir -p ${{ inputs.folder_path }}
+          fi
+        env:
+          folder_path: ${{ inputs.folder_path }}
+ 
         
