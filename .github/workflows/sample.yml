@@ -14,6 +14,7 @@ env:
   SCM_EMAIL: javiAlc@github.com
   SCM_USERNAME: javiAlc
   BRANCH_NAME: ''
+  FOLDER_CREATED: false
 
 jobs:
   update-definition:
@@ -43,8 +44,20 @@ jobs:
         run: |
           if [ ! -d ${{ inputs.folder_path }} ]; then
             mkdir -p ${{ inputs.folder_path }}
+            echo "true=$FOLDER_CREATED" >> $GITHUB_ENV
           fi
-        env:
-          folder_path: ${{ inputs.folder_path }}
- 
+      - name: Make changes and commit
+        run: |
+          if [ ${{env.FOLDER_CREATED}} = true ]; then
+            echo "Folder created"
+            touch ${{ inputs.folder_path }}/test.txt
+          else
+            echo "Folder already exists"
+            touch ${{ inputs.folder_path }}/test2.txt
+          fi
+          git add -A
+          git commit -S -m "Test creating folders"
+          git push origin main
+        
+          
         
