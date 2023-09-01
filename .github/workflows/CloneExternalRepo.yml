@@ -15,7 +15,7 @@ jobs:
       - name: Checkout external repo
         uses: actions/checkout@v3
         with:
-          repository: <external-repo-url>
+          repository: ${{inputs.external-repo-url}}
           ref: main
       - name: Print folders
         run: |
