@@ -6,7 +6,7 @@ on:
       external-repo-url:
         description: 'External repo url'
         required: true
-        default: 'https://github.com/srhojo/ms-hexagonal-architecture'
+        default: 'srhojo/ms-hexagonal-architecture'
 
 jobs:
   clone:
