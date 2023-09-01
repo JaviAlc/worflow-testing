@@ -1,0 +1,22 @@
+name: Clone external repo
+
+on:
+  workflow_dispatch:
+    inputs:
+      external-repo-url:
+        description: 'External repo url'
+        required: true
+        default: 'https://github.com/srhojo/ms-hexagonal-architecture'
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout external repo
+        uses: actions/checkout@v3
+        with:
+          repository: <external-repo-url>
+          ref: main
+      - name: Print folders
+        run: |
+          ls -la
